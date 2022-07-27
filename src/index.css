@@ -59,6 +59,7 @@ code {
 }
 #nav li {
   margin-left: 10px;
+  font-size: 1.3rem;
 }
 #nav li a {
   text-decoration: none;
