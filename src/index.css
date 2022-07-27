@@ -89,7 +89,7 @@ code {
 
 .create-post .form-field textarea {
   border: 1px solid #e1e1e1;
-  height: 400px;
+  /* height: 300px; */
   font-size: 18px;
   padding-left: 10px;
   border-radius: 3px;
@@ -104,4 +104,5 @@ code {
   font-size: 15px;
   border-radius: 3px;
   cursor: pointer;
+  margin-bottom: 2rem;
 }
