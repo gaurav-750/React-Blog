@@ -1,39 +1,53 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+
+import firebase from '../firebase';
+import useFormInput from '../hooks';
 
 
 const CreatePost = () => {
 
-    const [title, setTitle] = useState('');
-    const [subtitle, setSubTitle] = useState('');
-    const [content, setContent] = useState('');
+    //using custom hook:
+    const title = useFormInput('');
+    const subtitle = useFormInput('');
+    const content = useFormInput('');
 
+    // console.log('title', title);
+    // console.log('...title', {...title});
 
     const handlesubmit = (e) => {
         e.preventDefault();
 
-        // console.log(e.target.value);
-        console.log('title', title);
-        console.log('content', content);
+        firebase
+            .firestore()
+            .collection('posts')
+            .add({
+                title : title.value,
+                subTitle : subtitle.value,
+                content : content.value,
+                createdAt : new Date()
+            })
+            .then(() => console.log('Post Added Succesfully!'))
+            .catch((err) => console.log('Error in adding post:', err))
     }
 
   return (
-    <div className='create-post'>
+    <div className='create-post'>~
         <h1>Create Post</h1>
 
         <form onSubmit={handlesubmit} >
             <div className='form-field'>
                 <label>Title</label>
-                <input value={title} onChange={(e) => {setTitle(e.target.value)}} ></input>
+                <input {...title} ></input>
             </div>
 
             <div className='form-field'>
                 <label>Sub Title</label>
-                <input value={subtitle} onChange={(e) => {setSubTitle(e.target.value)}}></input>
+                <input {...subtitle}></input>
             </div>
 
             <div className='form-field'>
                 <label>Content</label>
-                <textarea rows={10} value={content} onChange={(e) => {setContent(e.target.value)}}>
+                <textarea rows={10} {...content}>
 
                 </textarea>
             </div>
