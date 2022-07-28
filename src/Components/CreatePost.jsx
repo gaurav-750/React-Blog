@@ -11,8 +11,8 @@ const CreatePost = () => {
     const subtitle = useFormInput('');
     const content = useFormInput('');
 
-    // console.log('title', title);
-    // console.log('...title', {...title});
+    console.log('title', title);
+    console.log('...title', {...title});
 
     const handlesubmit = (e) => {
         e.preventDefault();
