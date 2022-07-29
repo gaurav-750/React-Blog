@@ -15,7 +15,11 @@ const Home = () => {
         .collection('posts')
         .onSnapshot((snapshot) => {
           const posts = snapshot.docs.map((doc) => {
-            return doc.data();
+            const data = doc.data();
+
+            //adding the id to doc:
+            data['id'] = doc.id;
+            return data;
           })
 
           // console.log('postsarr', posts);
@@ -32,7 +36,7 @@ const Home = () => {
 
       {posts.map((post, index) => {
         return(
-        <div className='post' key={index}>
+        <div className='post' key={`post-${index}`}>
 
           <Link to={`/post/${post.id}`} >
             <h3> {post.title} </h3>
