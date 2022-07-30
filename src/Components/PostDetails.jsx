@@ -21,7 +21,7 @@ const PostDetails = () => {
         setPost(snapshot.data());
       })
 
-  }, []);
+  });
 
   return (
     <div className='post-detail'>

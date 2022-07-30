@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import firebase from '../firebase';
 import useFormInput from '../hooks';
@@ -11,8 +11,7 @@ const CreatePost = () => {
     const subtitle = useFormInput('');
     const content = useFormInput('');
 
-    console.log('title', title);
-    console.log('...title', {...title});
+    const navigate = useNavigate();
 
     const handlesubmit = (e) => {
         e.preventDefault();
@@ -26,7 +25,14 @@ const CreatePost = () => {
                 content : content.value,
                 createdAt : new Date()
             })
-            .then(() => console.log('Post Added Succesfully!'))
+            .then(() => {
+                //clear the input fields:
+                title.setthevalue('');
+                subtitle.setthevalue('');
+                content.setthevalue('');
+
+                navigate('/');
+            })
             .catch((err) => console.log('Error in adding post:', err))
     }
 

@@ -26,7 +26,7 @@ const Home = () => {
           setPosts(posts);
         })
 
-    }, []);
+    });
 
   return (
     <div className='home'>
